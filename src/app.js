@@ -16,7 +16,7 @@ console.log(staticPath);
 app.use(koaBody({
   multipart:true, // 支持文件上传
   formidable:{
-    uploadDir: path.join(__dirname, '../static/avatar'), // 设置文件上传目录
+    uploadDir: path.join(__dirname, '../static/img'), // 设置文件上传目录
     keepExtensions: true,    // 保持文件的后缀
     maxFieldsSize:5 * 1024 * 1024, // 文件上传大小
     onFileBegin:(name,file) => { // 文件上传前的设置

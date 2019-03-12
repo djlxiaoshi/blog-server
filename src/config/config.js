@@ -6,7 +6,7 @@
 module.exports = {
   host: '',  // 域名
   port: 3000, // 端口
-  mongoUrl: 'mongodb://localhost:27017/website', // mongodb连接信息
+  mongoUrl: 'mongodb://localhost:27017/admin-system', // mongodb连接信息
   session: {
     key: 'login', // cookie name
     maxAge: 86400000, // expires time 1 day
