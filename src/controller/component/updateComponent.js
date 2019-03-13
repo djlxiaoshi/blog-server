@@ -8,7 +8,8 @@ exports.updateComponent = async (ctx, next) => {
     chineseName: bodyParams.chineseName,
     englishName: bodyParams.englishName,
     dependencies: bodyParams.dependencies,
-    gitlab: bodyParams.gitlab
+    gitlab: bodyParams.gitlab,
+    tag: bodyParams.tag
   });
 
   ctx.body = {

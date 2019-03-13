@@ -20,6 +20,11 @@ const ComponentSchema = new Schema({
   },
   img: {
     type: String,
+  },
+  tag: {
+    type: String,
+    required: false,
+    ref: 'tag'
   }
 });
 

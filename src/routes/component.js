@@ -3,7 +3,10 @@ const  { checkLogin }  = require('../middleware/check');
 module.exports = function (router) {
 
   // 获取所有收藏
-  router.get('/components', componentController.getAllComponents);
+  router.get('/components', componentController.getComponentsList);
+
+  // 通过tag名获取组件列表
+  router.get('/components/tag', componentController.getComponentsListByTag);
 
   // 获取指定id收藏
   router.get('/component/:id', componentController.getComponent);
