@@ -13,6 +13,10 @@ module.exports = function (router) {
 
   // 获取用户信息
   router.get('/user', checkLogin, userController.getUser);
+
+  // 获取用户信息 (无登录验证)
+  router.get('/getUserBy', userController.getUserBy);
+
   // 创建用户
   router.post('/user', checkNotLogin, userController.createUser);
   // 更新用户信息
