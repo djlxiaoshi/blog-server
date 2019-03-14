@@ -11,7 +11,6 @@ const serve = require('koa-static');
 app.keys = ['djlxsdjlxs'];
 
 const staticPath = path.join(__dirname, '../static');
-console.log(staticPath);
 // 解析post数据
 app.use(koaBody({
   multipart:true, // 支持文件上传

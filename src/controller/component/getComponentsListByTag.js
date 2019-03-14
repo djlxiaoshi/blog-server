@@ -6,10 +6,6 @@ exports.getComponentsListByTag = async (ctx, next) => {
     currentPage = parseInt(params.currentPage),
     skipCount = (currentPage - 1) * pageSize;
 
-  const data = await ComponentModel.find({tag: params.tag});
-  console.log(params.tag);
-  console.log(data);
-
   const result = await Promise.all([
     ComponentModel.count({tag: params.tagId}),
     ComponentModel.find({tag: params.tagId}).skip(skipCount).limit(pageSize).populate('tag')

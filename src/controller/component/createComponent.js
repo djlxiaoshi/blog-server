@@ -1,7 +1,8 @@
 const ComponentModel = require('../../model/componentModel');
 
 exports.createComponent = async (ctx, next) => {
-  const params = ctx.request.body;
+  const params = ctx.request.body,
+    user = ctx.session.user;
 
   const result = await ComponentModel.find({englishName: params.englishName});
 
@@ -20,7 +21,8 @@ exports.createComponent = async (ctx, next) => {
     englishName: params.englishName,
     dependencies: params.dependencies,
     gitlab: params.gitlab,
-    tag: params.tag
+    tag: params.tag,
+    createUserId: user._id
   });
 
   ctx.body = {

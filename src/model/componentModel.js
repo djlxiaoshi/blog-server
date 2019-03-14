@@ -2,6 +2,11 @@ const mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 const ComponentSchema = new Schema({
+  createUserId: {
+    type: String,
+    required: true,
+    ref: 'user'
+  },
   chineseName: {
     type: String,
     required: true

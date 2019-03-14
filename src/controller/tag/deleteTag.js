@@ -8,7 +8,6 @@ exports.deleteTag = async (ctx, next) => {
 
   const data = await ComponentModel.find({tag: params.id});
 
-  console.log(data);
   // 删除component中对应的tag
   data.forEach(item => {
     delete item.tag;

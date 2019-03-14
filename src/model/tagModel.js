@@ -2,6 +2,11 @@ const mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 const TagSchema = new Schema({
+  createUserId: {
+    type: String,
+    required: true,
+    ref: 'user'
+  },
   label: {
     type: String,
     required: true

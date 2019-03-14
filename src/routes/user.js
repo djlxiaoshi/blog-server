@@ -8,6 +8,9 @@ module.exports = function (router) {
   // 用户登出
   router.get('/logout', checkLogin, userController.userLogout);
 
+  // 判断用户是否处于登录状态
+  router.get('/user/isLogin', userController.userCheckLogin);
+
   // 获取用户信息
   router.get('/user', checkLogin, userController.getUser);
   // 创建用户
@@ -15,5 +18,5 @@ module.exports = function (router) {
   // 更新用户信息
   router.put('/user', checkLogin, userController.updateUser);
   // 上传头像
-  router.post('/avatar', checkLogin, userController.uploadAvatar)
+  router.post('/user/avatar', checkLogin, userController.uploadUserAvatar)
 };
