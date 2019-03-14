@@ -19,6 +19,10 @@ const UserSchema = new Schema({
   info: {
     type: String,
     required: false
+  },
+  email: {
+    type: String,
+    required: true
   }
 });
 

@@ -8,8 +8,9 @@ exports.userCheckLogin = async (ctx, next) => {
       code: 0,
       data: {
         username: sessionUser.username,
-        info: sessionUser.info,
-        avatar: sessionUser.avatar
+        avatar: sessionUser.avatar,
+        email: sessionUser.email,
+        info: sessionUser.info
       },
       message: '用户已登录'
     };
