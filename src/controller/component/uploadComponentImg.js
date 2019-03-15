@@ -1,10 +1,11 @@
 const ComponentModel = require('../../model/componentModel');
 const fs = require('fs');
 const url = require('url');
+const config = require('../../config/config');
 
 exports.uploadComponentImg = async (ctx, next) => {
   const files = ctx.request.files,
-    imgPath = ctx.origin + '/img/' + /(upload).*/.exec(files.file.path)[0],
+    imgPath = config.uplaodImgPath + '/' + /(upload).*/.exec(files.file.path)[0],
     params = ctx.request.body; // 获取body中的参数
 
   const{ img } = await ComponentModel.findById(params.componentId, 'img');

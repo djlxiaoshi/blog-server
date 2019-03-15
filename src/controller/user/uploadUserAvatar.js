@@ -1,11 +1,12 @@
 const UserModel = require('../../model/userModel');
 const fs = require('fs');
 const url = require('url');
+const config = require('../../config/config');
 
 exports.uploadUserAvatar = async (ctx, next) => {
   const files = ctx.request.files,
     user = ctx.session.user,
-    imgPath = ctx.origin + '/img/' + /(upload).*/.exec(files.file.path)[0]
+    imgPath = config.uplaodImgPath + '/' + /(upload).*/.exec(files.file.path)[0];
 
   // 根据用户id查找，用户头像地址
   const{ avatar } = await UserModel.findById(user._id, 'avatar');

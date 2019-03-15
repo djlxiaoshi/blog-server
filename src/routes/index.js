@@ -10,8 +10,10 @@ const router = new Router();
 
 // 处理cors跨域
 router.use(async (ctx, next) => {
+  const allowOrigin = ctx.request.header.origin;
+
   ctx.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-  ctx.set('Access-Control-Allow-Origin', config.allowOrigin);
+  ctx.set('Access-Control-Allow-Origin', allowOrigin);
   ctx.set('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
   ctx.set('Access-Control-Allow-Credentials', true);
   await next()
@@ -19,8 +21,10 @@ router.use(async (ctx, next) => {
 
 // 处理预请求
 router.options('*', async (ctx, next) => {
+  const allowOrigin = ctx.request.header.origin;
+
   ctx.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-  ctx.set('Access-Control-Allow-Origin', config.allowOrigin);
+  ctx.set('Access-Control-Allow-Origin', allowOrigin);
   ctx.status = 204;
   await next();
 });

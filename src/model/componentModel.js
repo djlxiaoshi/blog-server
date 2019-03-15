@@ -23,6 +23,14 @@ const ComponentSchema = new Schema({
     type: String,
     required: false
   },
+  previewUrl: {
+    type: String,
+    required: false
+  },
+  usage: {
+    type: String,
+    required: false
+  },
   img: {
     type: String,
   },

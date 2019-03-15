@@ -22,6 +22,8 @@ exports.createComponent = async (ctx, next) => {
     dependencies: params.dependencies,
     gitlab: params.gitlab,
     tag: params.tag,
+    previewUrl: params.previewUrl,
+    usage: params.usage,
     createUserId: user._id
   });
 
