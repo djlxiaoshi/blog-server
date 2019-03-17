@@ -6,7 +6,7 @@
 module.exports = {
   host: '',  // 域名
   port: 3000, // 端口
-  mongoUrl: 'mongodb://localhost:27017/admin-system', // mongodb连接信息
+  mongoUrl: 'mongodb://localhost:27017/app-database', // mongodb连接信息
   session: {
     key: 'login', // cookie name
     maxAge: 86400000, // expires time 1 day
@@ -17,6 +17,5 @@ module.exports = {
     rolling: false, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
     renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
   },
-  allowOrigin: 'http://localhost:8080',
   uplaodImgPath: '/img'
 };
