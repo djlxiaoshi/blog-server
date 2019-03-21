@@ -1,11 +1,22 @@
 const MenuModel = require('../../../model/menuModel');
 
 exports.getMenuList = async (ctx, next) => {
-  const params = ctx.query,
-    user = ctx.session.user;
 
-  // fixme 这里有耦合 后期加入系统表
-  const data = await MenuModel.find({system: params.system || 'collection'});
+  const data = await MenuModel.aggregate([
+    {
+      $group: {
+        _id: '$system', menuList: {
+          $push: {
+            system: '$system',
+            label: '$label',
+            path: '$path',
+            icon: '$icon',
+            _id: '$_id'
+          }
+        }
+      }
+    }
+  ]);
 
   ctx.body = {
     code: 0,

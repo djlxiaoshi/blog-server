@@ -8,12 +8,7 @@ exports.getComponentsList = async (ctx, next) => {
 
   const result = await Promise.all([
     ComponentModel.countDocuments({}),
-    ComponentModel.find({}).skip(skipCount).limit(pageSize).populate('tag'),
-    new Promise(resolve => {
-      setTimeout(() => {
-        resolve();
-      }, 5000)
-    })
+    ComponentModel.find({}).skip(skipCount).limit(pageSize).populate('tag')
   ]);
 
   ctx.body = {

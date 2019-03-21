@@ -10,7 +10,8 @@ exports.userCheckLogin = async (ctx, next) => {
         username: sessionUser.username,
         avatar: sessionUser.avatar,
         email: sessionUser.email,
-        info: sessionUser.info
+        info: sessionUser.info,
+        role: sessionUser.role
       },
       message: '用户已登录'
     };

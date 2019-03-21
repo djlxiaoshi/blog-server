@@ -8,6 +8,7 @@ exports.createMenu = async (ctx, next) => {
     label: params.label,
     icon: params.icon,
     path: params.path,
+    system: params.system,
     createTime: params.createTime
   });
 

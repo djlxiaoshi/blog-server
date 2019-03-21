@@ -6,7 +6,7 @@ exports.deleteComponent = async (ctx, next) => {
 
   // 删除文章
   const data = await ComponentModel.findOneAndDelete({
-    _id: params.id
+      _id: params.id
   });
 
   ctx.body = {
