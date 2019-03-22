@@ -1,22 +1,13 @@
 const mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-const MenuSchema = new Schema({
+const SystemSchema = new Schema({
   label: {
     type: String,
     required: true
   },
   icon: {
     type: String
-  },
-  path: {
-    type: String,
-    required: true
-  },
-  system: {
-    // 所属系统
-    type: String,
-    required: true
   },
   permission: {
     type: Array
@@ -26,4 +17,4 @@ const MenuSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('menu', MenuSchema);
+module.exports = mongoose.model('system', SystemSchema);

@@ -6,6 +6,7 @@ const userRouter = require('./user');
 const componentRouter = require('./component');
 const tagRouter = require('./tag');
 const menuRouter = require('./menu');
+const systemRouter = require('./system');
 
 const router = new Router();
 
@@ -38,6 +39,8 @@ componentRouter(router);
 tagRouter(router);
 // 菜单管理相关路由
 menuRouter(router);
+// 系统管理相关路由
+systemRouter(router);
 
 module.exports = router;
 
