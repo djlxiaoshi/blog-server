@@ -1,5 +1,5 @@
 const UserModel = require('../../model/userModel');
-
+const SystemModel = require('../../model/systemModel');
 /**
  * 通过用户名获取用户信息
  * @param {string} username // 用户名
@@ -16,11 +16,25 @@ exports.userLogin = async (ctx, next) => {
   const result = await getUserByName(params.username);
 
   if (result) {
+    const menus = await SystemModel.find({
+      permission: { $all: [ result.role ]}
+    }).populate({
+      path: 'menus',
+      match: { permission: { $all: [ result.role ] }},
+    });
+
     if (result.password === params.password) {
       ctx.session.user = result;
       ctx.body = {
         code: 0,
-        data: result,
+        data: {
+          avatar: result.avatar,
+          info: result.info,
+          role: result.role,
+          email: result.email,
+          username: result.username,
+          menus: menus
+        },
         message: '登录成功'
       };
     } else {

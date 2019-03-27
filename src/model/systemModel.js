@@ -12,6 +12,9 @@ const SystemSchema = new Schema({
   permission: {
     type: Array
   },
+  menus: [
+    { type: String, ref: 'menu' }
+  ],
   createTime: {
     type: String
   }

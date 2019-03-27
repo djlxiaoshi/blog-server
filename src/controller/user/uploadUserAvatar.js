@@ -16,12 +16,20 @@ exports.uploadUserAvatar = async (ctx, next) => {
     avatar: imgPath
   });
 
+  //  更新session中用户信息
+  user.avatar = imgPath;
+
   //  如果存在图片地址
   if (avatar) {
-    const avatarParseUrl = url.parse(avatar);
+    const avatarParseUrl = url.parse(avatar),
+      avatarUrl = 'static' + avatarParseUrl.pathname
 
-    // 删除原有图片，避免磁盘占用，同步方法
-    fs.unlinkSync('static' + avatarParseUrl.pathname);
+    if (fs.existsSync(avatarUrl)) {
+      // 删除原有图片，避免磁盘占用，同步方法
+      fs.unlinkSync(avatarUrl);
+    } else {
+      console.warn('图片不存在！');
+    }
   }
 
   ctx.body = {

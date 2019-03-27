@@ -8,6 +8,7 @@ exports.updateMenu = async (ctx, next) => {
     label: bodyParams.label,
     icon: bodyParams.icon,
     path: bodyParams.path,
+    permission: bodyParams.permission,
     system: bodyParams.system
   });
 

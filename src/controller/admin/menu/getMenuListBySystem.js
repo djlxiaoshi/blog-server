@@ -6,7 +6,7 @@ exports.getMenuListBySystem = async (ctx, next) => {
 
   console.log(user);
   const data = await MenuModel.find({
-    system: queryParams.system || 'collection', // 默认为收藏系统
+    system: queryParams.systemId, // 默认为收藏系统
     permission :{ $all:[user.role] }
   });
 
