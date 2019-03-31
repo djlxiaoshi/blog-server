@@ -1,33 +1,21 @@
 const mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-const ComponentSchema = new Schema({
+const CollectionSchema = new Schema({
   createUserId: {
     type: String,
     required: true,
     ref: 'user'
   },
-  chineseName: {
+  name: {
     type: String,
     required: true
   },
-  englishName: {
+  desc: {
     type: String,
     required: true
   },
-  dependencies: {
-    type: String,
-    required: true
-  },
-  gitlab: {
-    type: String,
-    required: false
-  },
-  previewUrl: {
-    type: String,
-    required: false
-  },
-  usage: {
+  url: {
     type: String,
     required: false
   },
@@ -38,7 +26,10 @@ const ComponentSchema = new Schema({
     type: String,
     required: false,
     ref: 'tag'
+  },
+  createTime:{
+    type: String
   }
 });
 
-module.exports = mongoose.model('component', ComponentSchema);
+module.exports = mongoose.model('collection', CollectionSchema);

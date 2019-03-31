@@ -14,13 +14,17 @@ async function getUserByName (username) {
 exports.userLogin = async (ctx, next) => {
   const params = ctx.request.body;
   const result = await getUserByName(params.username);
+  let match = {};
 
-  if (result) {
-    const menus = await SystemModel.find({
+  if (result.role !== 'admin') {
+    match = {
       permission: { $all: [ result.role ]}
-    }).populate({
+    }
+  }
+  if (result) {
+    const menus = await SystemModel.find(match).populate({
       path: 'menus',
-      match: { permission: { $all: [ result.role ] }},
+      match: match
     });
 
     if (result.password === params.password) {

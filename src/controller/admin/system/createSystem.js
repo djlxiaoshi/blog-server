@@ -8,6 +8,7 @@ exports.createSystem = async (ctx, next) => {
     label: params.label,
     icon: params.icon,
     permission: params.permission,
+    name: params.name,
     createTime: params.createTime
   });
 

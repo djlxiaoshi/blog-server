@@ -3,7 +3,7 @@
 const Router = require('koa-router');
 const config = require('../config/config');
 const userRouter = require('./user');
-const componentRouter = require('./component');
+const collectionRouter = require('./collection');
 const tagRouter = require('./tag');
 const menuRouter = require('./menu');
 const systemRouter = require('./system');
@@ -33,8 +33,8 @@ router.options('*', async (ctx, next) => {
 
 // 用户相关路由
 userRouter(router);
-// 组件管理路由
-componentRouter(router);
+// 收藏管理
+collectionRouter(router);
 // 标签相关路由
 tagRouter(router);
 // 菜单管理相关路由

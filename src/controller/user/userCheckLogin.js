@@ -3,12 +3,19 @@ const SystemModel = require('../../model/systemModel');
 
 exports.userCheckLogin = async (ctx, next) => {
   const sessionUser = ctx.session.user;
+  let match = {};
 
   if (sessionUser) {
 
-    const menus = await SystemModel.find({ permission: { $all: [sessionUser.role] } }).populate({
+    if (sessionUser.role !== 'admin') {
+      match = {
+        permission: { $all: [ sessionUser.role ]}
+      }
+    }
+
+    const menus = await SystemModel.find(match).populate({
       path: 'menus',
-      match: { permission: { $all: [ sessionUser.role ] }}
+      match: match
     });
 
     ctx.body = {

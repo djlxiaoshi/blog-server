@@ -8,6 +8,7 @@ exports.updateSystem = async (ctx, next) => {
   await SystemModel.updateOne({ _id: pathParams.id }, {
     label: bodyParams.label,
     icon: bodyParams.icon,
+    name: bodyParams.name,
     permission: bodyParams.permission
   });
 
