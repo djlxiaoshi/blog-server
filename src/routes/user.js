@@ -22,5 +22,8 @@ module.exports = function (router) {
   // 更新用户信息
   router.put('/user', checkLogin, userController.updateUser);
   // 上传头像
-  router.post('/user/avatar', checkLogin, userController.uploadUserAvatar)
+  router.post('/user/avatar', checkLogin, userController.uploadUserAvatar);
+
+  // 上传头像
+  router.post('/user/avatar/test', userController.uploadUserAvatarTest)
 };

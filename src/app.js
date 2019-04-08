@@ -14,14 +14,14 @@ const staticPath = path.join(__dirname, '../static');
 // 解析post数据
 app.use(koaBody({
   multipart:true, // 支持文件上传
-  formidable:{
-    uploadDir: path.join(__dirname, '../static', config.uplaodImgPath), // 设置文件上传目录
-    keepExtensions: true,    // 保持文件的后缀
-    maxFieldsSize:5 * 1024 * 1024, // 文件上传大小
-    onFileBegin:(name,file) => { // 文件上传前的设置
-
-    },
-  }
+  // formidable:{
+  //   uploadDir: path.join(__dirname, '../static', config.uplaodImgPath), // 设置文件上传目录
+  //   keepExtensions: true,    // 保持文件的后缀
+  //   maxFieldsSize:5 * 1024 * 1024, // 文件上传大小
+  //   onFileBegin:(name,file) => { // 文件上传前的设置
+  //
+  //   },
+  // }
 }));
 
 // or if you prefer all default config, just use => app.use(session(app));

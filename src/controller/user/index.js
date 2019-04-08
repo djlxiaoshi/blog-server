@@ -6,3 +6,4 @@ exports.userLogin = require('./userLogin').userLogin;
 exports.userLogout = require('./userLogout').userLogout;
 exports.uploadUserAvatar = require('./uploadUserAvatar').uploadUserAvatar;
 exports.userCheckLogin = require('./userCheckLogin').userCheckLogin;
+exports.uploadUserAvatarTest = require('./uploadUserAvatarTest').uploadUserAvatarTest;
