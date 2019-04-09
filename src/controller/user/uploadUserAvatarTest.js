@@ -9,16 +9,17 @@ const utils = require('../../utils/upload');
 exports.uploadUserAvatarTest = async (ctx, next) => {
   const files = ctx.request.files;
 
-  // utils.uploader({
-  //   filename: 'test2.jpg',
-  //   file: files.file.path,
-  // }).then(result => {
-  //   console.log(result)
-  // }).catch(error => {
-  //   console.log(error)
-  // });
-
-  const url = utils.download();
+  utils.upload({
+    prefix: 'avatar',
+    file: files.file,
+    coverKey: 'test'
+  }).then(result => {
+    console.log(result)
+  }).catch(error => {
+    console.log(error)
+  });
+  //
+  // const url = utils.download();
 
   ctx.body = {
     code: 0,

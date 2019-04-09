@@ -17,5 +17,11 @@ module.exports = {
     rolling: false, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
     renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
   },
-  uplaodImgPath: '/img'
+  uplaodImgPath: '/img',
+  qiniu: {
+    accessKey: '0OtE7yPTUsK5WQLD3Zg5QSJqvenDQFuZwjgvxEX_',
+    secretKey: 'RY8RwQzfpW1lVZ9PiHjk9Wk-046m7VqqxBy8bwZG',
+    bucket: 'images',
+    previewHost: 'http://images.djl.pub'  // 在七牛云后台进行域名配置并解析，解析在你购买域名的平台上进行解析
+  }
 };
