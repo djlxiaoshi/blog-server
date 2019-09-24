@@ -1,26 +1,24 @@
 const mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-const CollectionSchema = new Schema({
-  createUserId: {
+const ArticleSchema = new Schema({
+  createUser: {
     type: String,
     required: true,
     ref: 'user'
   },
-  name: {
+  title: {
     type: String,
     required: true
   },
-  desc: {
+  content: {
     type: String,
-    required: true
   },
-  url: {
-    type: String,
-    required: false
+  thumbnail: {
+    type: String
   },
-  img: {
-    type: String,
+  abstract: {
+    type: String
   },
   tag: {
     type: String,
@@ -29,7 +27,10 @@ const CollectionSchema = new Schema({
   },
   createTime:{
     type: String
+  },
+  updateTime: {
+    type: String
   }
 });
 
-module.exports = mongoose.model('collection', CollectionSchema);
+module.exports = mongoose.model('article', ArticleSchema);

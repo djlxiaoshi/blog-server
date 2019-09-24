@@ -5,9 +5,9 @@ exports.updateUser = async (ctx, next) => {
   const params = ctx.request.body,
     sessionUser = ctx.session.user,
     userMsg = {
-    username: params.username,
-    info: params.info
-  };
+      username: params.username,
+      info: params.info
+    };
 
   // 判断用户名是否已经存在
   if ((params.username !== sessionUser.username)) {
@@ -26,6 +26,12 @@ exports.updateUser = async (ctx, next) => {
 
   const updateUser = await UserModel.findById(sessionUser._id, 'username info avatar');
 
+  // 更新session
+  ctx.session.user = {
+    ...ctx.session.user,
+    updateUser
+  };
+  
   ctx.body = {
     code: 0,
     data: updateUser,

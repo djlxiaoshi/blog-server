@@ -6,9 +6,6 @@ module.exports = function (router) {
   // 获取所有菜单
   router.get('/menus', checkLogin, checkIsAdmin, menuController.getMenuList);
 
-  // 通过系统名获取菜单
-  router.get('/getMenusBySystem', checkLogin, menuController.getMenuListBySystem);
-
   // 获取菜单
   router.get('/menu/:id', checkLogin, checkIsAdmin, menuController.getMenu);
 

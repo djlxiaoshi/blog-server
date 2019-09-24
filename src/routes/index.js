@@ -3,12 +3,13 @@
 const Router = require('koa-router');
 const config = require('../config/config');
 const userRouter = require('./user');
-const collectionRouter = require('./collection');
+const collectionRouter = require('./article');
 const tagRouter = require('./tag');
 const menuRouter = require('./menu');
-const systemRouter = require('./system');
 
-const router = new Router();
+const router = new Router({
+  prefix: '/api'
+});
 
 // 处理cors跨域
 router.use(async (ctx, next) => {
@@ -39,8 +40,6 @@ collectionRouter(router);
 tagRouter(router);
 // 菜单管理相关路由
 menuRouter(router);
-// 系统管理相关路由
-systemRouter(router);
 
 module.exports = router;
 

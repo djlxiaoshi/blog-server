@@ -1,6 +1,6 @@
-const CollectionModel = require('../../model/collectionModel');
+const ArticleModel = require('../../model/articleModel');
 
-exports.getCollection = async (ctx, next) => {
+module.exports = async (ctx, next) => {
   const pathParams = ctx.params, // 获取路径参数
     queryParams = ctx.query;
 
@@ -8,9 +8,9 @@ exports.getCollection = async (ctx, next) => {
 
   if (queryParams.operate && JSON.parse(queryParams.operate).$lookup) {
     // 连表查询
-    data = await CollectionModel.findById(pathParams.id).populate('tag');
+    data = await ArticleModel.findById(pathParams.id).populate('tag');
   } else {
-    data = await CollectionModel.findById(pathParams.id);
+    data = await ArticleModel.findById(pathParams.id);
   }
 
   ctx.body = {

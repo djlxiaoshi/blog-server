@@ -1,5 +1,5 @@
 const TagModel = require('../../model/tagModel');
-const CollectionModel = require('../../model/collectionModel');
+const CollectionModel = require('../../model/articleModel');
 
 exports.deleteTag = async (ctx, next) => {
   const params = ctx.params;

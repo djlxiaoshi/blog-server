@@ -4,7 +4,7 @@
   "description": "this is a project of Favorite-App",
   "main": "src/app.js",
   "scripts": {
-    "dev": "nodemon --inspect ./src/app.js localhost 9229"
+    "dev": "nodemon --inspect ./src/app.js"
   },
   "repository": {
     "type": "git",
@@ -17,13 +17,15 @@
   },
   "homepage": "https://github.com/djlxiaoshi/website-back-end#readme",
   "dependencies": {
+    "dayjs": "^1.8.16",
     "koa": "^2.5.3",
     "koa-body": "^4.0.4",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "koa-session": "^5.9.0",
     "mongoose": "^5.3.2",
-    "qiniu": "^7.2.1"
+    "qiniu": "^7.2.1",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "koa-static": "^5.0.0",

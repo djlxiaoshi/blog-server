@@ -1,13 +1,13 @@
-const CollectionModel = require('../../model/collectionModel');
+const ArticleModel = require('../../model/articleModel');
 
-exports.getCollectionList = async (ctx, next) => {
+module.exports = async (ctx, next) => {
   const params = ctx.query,
     user = ctx.session.user,
     pageSize = parseInt(params.pageSize),
     currentPage = parseInt(params.currentPage),
     skipCount = (currentPage - 1) * pageSize,
     matched = {
-      createUserId: user._id,
+      createUser: user._id,
     };
 
   // 根据taglist
@@ -16,8 +16,8 @@ exports.getCollectionList = async (ctx, next) => {
   }
 
   const result = await Promise.all([
-    CollectionModel.countDocuments({}),
-    CollectionModel.find(matched).skip(skipCount).limit(pageSize).populate('tag')
+    ArticleModel.countDocuments({}),
+    ArticleModel.find(matched).skip(skipCount).limit(pageSize).populate('tag')
   ]);
 
   ctx.body = {
