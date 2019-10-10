@@ -1,7 +1,7 @@
 const TagModel = require('../../model/tagModel');
 const CollectionModel = require('../../model/articleModel');
 
-exports.deleteTag = async (ctx, next) => {
+module.exports = async (ctx, next) => {
   const params = ctx.params;
 
   await TagModel.findOneAndDelete({_id: params.id});

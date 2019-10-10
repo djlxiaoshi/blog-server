@@ -31,7 +31,7 @@ exports.updateUser = async (ctx, next) => {
     ...ctx.session.user,
     updateUser
   };
-  
+
   ctx.body = {
     code: 0,
     data: updateUser,

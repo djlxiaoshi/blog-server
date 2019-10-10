@@ -2,7 +2,7 @@ const mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 const TagSchema = new Schema({
-  createUserId: {
+  createUser: {
     type: String,
     required: true,
     ref: 'user'
@@ -14,7 +14,18 @@ const TagSchema = new Schema({
   createTime: {
     type: String,
     required: false
+  },
+  articles: {
+    type: Array
   }
 });
 
-module.exports = mongoose.model('tag', TagSchema);
+/**
+ * 当我们在多个地方引入model文件的时候，会导致mongoose重复注册model
+ * https://stackoverflow.com/questions/19051041/cannot-overwrite-model-once-compiled-mongoose/28891860
+ */
+try {
+  module.exports = mongoose.model('tag');
+} catch (error) {
+  module.exports = mongoose.model('tag', TagSchema);
+}

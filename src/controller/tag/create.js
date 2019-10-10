@@ -1,6 +1,6 @@
 const TagModel = require('../../model/tagModel');
 
-exports.createTag = async (ctx, next) => {
+module.exports = async (ctx, next) => {
   const params = ctx.request.body,
     user = ctx.session.user;
 
@@ -18,8 +18,8 @@ exports.createTag = async (ctx, next) => {
 
   const data = await TagModel.create({
     label: params.label,
-    createTime: params.createTime,
-    createUserId: user._id
+    createTime: Date.now(),
+    createUser: user._id
   });
 
   ctx.body = {

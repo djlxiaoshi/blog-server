@@ -20,11 +20,9 @@ const ArticleSchema = new Schema({
   abstract: {
     type: String
   },
-  tag: {
-    type: String,
-    required: false,
-    ref: 'tag'
-  },
+  tags: [
+    { type: String, ref: 'tag' }
+  ],
   createTime:{
     type: String
   },
@@ -33,4 +31,12 @@ const ArticleSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('article', ArticleSchema);
+/**
+ * 当我们在多个地方引入model文件的时候，会导致mongoose重复注册model
+ * https://stackoverflow.com/questions/19051041/cannot-overwrite-model-once-compiled-mongoose/28891860
+ */
+try {
+  module.exports = mongoose.model('article');
+} catch (error) {
+  module.exports = mongoose.model('article', ArticleSchema);
+}

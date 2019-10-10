@@ -5,11 +5,7 @@ module.exports = async (ctx, next) => {
     bodyParams = ctx.request.body;
 
   await ArticleModel.updateOne({_id: pathParams.id}, {
-    title: bodyParams.title,
-    thumbnail: bodyParams.thumbnail,
-    abstract: bodyParams.abstract,
-    content: bodyParams.content,
-    tag: bodyParams.tag,
+    ...bodyParams,
     updateTime: Date.now()
   });
 

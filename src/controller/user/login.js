@@ -5,6 +5,7 @@ const UserModel = require('../../model/userModel');
  * @returns {Promise<*>}
  */
 async function getUserByName (username) {
+  const allUser = await UserModel.find();
   return await UserModel.findOne({'username': username});
 }
 
@@ -27,7 +28,8 @@ exports.userLogin = async (ctx, next) => {
           info: user.info,
           role: user.role,
           email: user.email,
-          username: user.username
+          username: user.username,
+          _id: user._id
         },
         message: '登录成功'
       };

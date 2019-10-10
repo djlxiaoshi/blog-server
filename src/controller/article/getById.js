@@ -1,17 +1,12 @@
 const ArticleModel = require('../../model/articleModel');
 
 module.exports = async (ctx, next) => {
-  const pathParams = ctx.params, // 获取路径参数
-    queryParams = ctx.query;
+  const pathParams = ctx.params; // 获取路径参数
 
-  let data;
-
-  if (queryParams.operate && JSON.parse(queryParams.operate).$lookup) {
-    // 连表查询
-    data = await ArticleModel.findById(pathParams.id).populate('tag');
-  } else {
-    data = await ArticleModel.findById(pathParams.id);
-  }
+  let data = await ArticleModel.
+  findById(pathParams.id).
+  populate('createUser', 'username').
+  populate('tags', '_id label');
 
   ctx.body = {
     code: 0,

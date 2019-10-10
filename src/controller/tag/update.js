@@ -1,6 +1,6 @@
 const TagModel = require('../../model/tagModel');
 
-exports.updateTag = async (ctx, next) => {
+module.exports = async (ctx, next) => {
   const pathParams = ctx.params,
     bodyParams = ctx.request.body;
 

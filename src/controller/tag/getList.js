@@ -1,6 +1,7 @@
 const TagModel = require('../../model/tagModel');
+const ArticleModel = require('../../model/articleModel');
 
-exports.getTagsList = async (ctx, next) => {
+exports.getAll = async (ctx, next) => {
 
   const params = ctx.query,
     pageSize = parseInt(params.pageSize),
@@ -23,6 +24,7 @@ exports.getTagsList = async (ctx, next) => {
     };
   } else {
     const data = await TagModel.find({});
+
 
     ctx.body = {
       code: 0,
