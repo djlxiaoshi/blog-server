@@ -4,7 +4,7 @@ const  { checkLogin }  = require('../middleware/check');
 module.exports = function (router) {
 
   // 获取所有标签列表
-  router.get('/tags', checkLogin, tagController.getAllTags);
+  router.get('/tags', tagController.getAllTags);
 
   // 获取标签详情
   router.get('/tag/:id', checkLogin, tagController.getTagById);
