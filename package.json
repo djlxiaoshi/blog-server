@@ -4,7 +4,7 @@
   "description": "this is a project of Favorite-App",
   "main": "src/app.js",
   "scripts": {
-    "dev": "nodemon --inspect ./src/app.js"
+    "dev": "nodemon ./src/app.js"
   },
   "repository": {
     "type": "git",

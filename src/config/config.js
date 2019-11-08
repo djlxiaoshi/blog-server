@@ -5,7 +5,7 @@
 
 module.exports = {
   host: '',  // 域名
-  port: 3000, // 端口
+  port: 3700, // 端口
   mongoUrl: 'mongodb://localhost:27017/blog', // mongodb连接信息
   session: {
     key: 'login', // cookie name
@@ -17,7 +17,7 @@ module.exports = {
     rolling: false, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
     renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
   },
-  uplaodImgPath: '/img',
+  uplaodImgPath: 'avatar',
   qiniu: {
     accessKey: '0OtE7yPTUsK5WQLD3Zg5QSJqvenDQFuZwjgvxEX_',
     secretKey: 'RY8RwQzfpW1lVZ9PiHjk9Wk-046m7VqqxBy8bwZG',

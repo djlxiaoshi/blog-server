@@ -1,8 +1,14 @@
+/***
+ * 参考七牛云官方提供Node.js的SDK文档
+ * https://developer.qiniu.com/kodo/sdk/1289/nodejs
+ */
+
 const qiniu = require('qiniu');
 const uuid = require('uuid/v4');
 const appConfig = require('../config/config'),
   qiniuConfig = appConfig.qiniu;
 
+// 生成鉴权对象
 const mac = new qiniu.auth.digest.Mac(qiniuConfig.accessKey, qiniuConfig.secretKey);
 
 // 文件上传
@@ -10,16 +16,17 @@ exports.upload = function upload(config) {
   const file = config.file,
     postfixArr = file.name.split('.'),
     postfix = postfixArr[postfixArr.length - 1],
-    prefix = config.prefix || 'image',
+    prefix = config.prefix || 'blog',
     fileKey = config.coverKey || `${prefix}_${ uuid() }.${ postfix }`,
     filePath = file.path,
     bucket = qiniuConfig.bucket,
     options = {
-      scope: config.coverKey ? `${bucket}:${config.coverKey}` : bucket,
+      scope: config.coverKey ? `${bucket}:${config.coverKey}` : bucket, // 如果是覆盖上传，请指定要被覆盖文件的名称
+      expires: 7200 // 自定义凭证有效期 单位为秒
     };
 
   const putPolicy = new qiniu.rs.PutPolicy(options),
-    uploadToken = putPolicy.uploadToken(mac),
+    uploadToken = putPolicy.uploadToken(mac), // 生成上传凭证
     formUploader = new qiniu.form_up.FormUploader(config),
     putExtra = new qiniu.form_up.PutExtra(),
     defaultConfig = new qiniu.conf.Config();
@@ -39,12 +46,14 @@ exports.upload = function upload(config) {
           reject(respErr);
         }
         if (respInfo.statusCode === 200) {
-          // 刷新dns缓存
-          refresh(`${qiniuConfig.previewHost}/${filekey}`);
-          resolve(respBody);
+          try {
+            // 刷新dns缓存
+            refresh(`${qiniuConfig.previewHost}/${fileKey}`);
+            resolve(respBody);
+          } catch (e) {
+            reject(e);
+          }
         } else {
-          console.log(respInfo.statusCode);
-          console.log(respBody);
           resolve(respBody);
         }
       });

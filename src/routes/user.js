@@ -22,5 +22,6 @@ module.exports = function (router) {
   router.post('/user/avatar', checkLogin, userController.uploadUserAvatar);
 
   // 上传头像
-  router.post('/user/avatar/test', userController.uploadUserAvatarTest)
+  router.post('/user/avatar/test', userController.uploadUserAvatarTest);
+
 };

@@ -6,15 +6,15 @@ const UserModel = require('../../model/userModel');
  * @returns {Promise<*>}
  */
 async function getUserByName (username) {
-  return await UserModel.findOne({'username': username}, 'username email avatar info');
+  return await UserModel.findOne({'username': username}, 'username email avatarKey info');
 }
 
 async function getUserByEmail (email) {
-  return await UserModel.findOne({'email': email}, 'username email avatar info');
+  return await UserModel.findOne({'email': email}, 'username email avatarKey info');
 }
 
 async function getUserByUserId (userId) {
-  return await UserModel.findOne({'_id': userId}, 'username email avatar info');
+  return await UserModel.findOne({'_id': userId}, 'username email avatarKey info');
 }
 
 exports.getUserBy = async (ctx, next) => {

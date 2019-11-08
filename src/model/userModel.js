@@ -15,7 +15,7 @@ const UserSchema = new Schema({
   role: {
     type: String
   },
-  avatar: {
+  avatarKey: {
     type: String,
     required: false
   },
