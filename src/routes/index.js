@@ -3,9 +3,10 @@
 const Router = require('koa-router');
 const config = require('../config/config');
 const userRouter = require('./user');
-const collectionRouter = require('./article');
+const articleRouter = require('./article');
 const tagRouter = require('./tag');
 const menuRouter = require('./menu');
+const commentRouter = require('./comment');
 
 const router = new Router({
   prefix: '/api'
@@ -34,12 +35,14 @@ router.options('*', async (ctx, next) => {
 
 // 用户相关路由
 userRouter(router);
-// 收藏管理
-collectionRouter(router);
+// 文章相关
+articleRouter(router);
 // 标签相关路由
 tagRouter(router);
 // 菜单管理相关路由
 menuRouter(router);
+// 评论相关
+commentRouter(router);
 
 module.exports = router;
 
