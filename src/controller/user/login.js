@@ -24,7 +24,7 @@ exports.userLogin = async (ctx, next) => {
       ctx.body = {
         code: 0,
         data: {
-          avatar: user.avatar,
+          avatarKey: user.avatarKey,
           info: user.info,
           role: user.role,
           email: user.email,

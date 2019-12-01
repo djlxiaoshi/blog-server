@@ -7,7 +7,7 @@ module.exports = async (ctx, next) => {
   const data = await CommentModel.create({
     content: bodyParams.content,
     createUser: user._id,
-    createTime: Date.now(),
+    createTime: new Date().getTime(),
     articleId: bodyParams.articleId,
     replyUser: bodyParams.replyUser
   });

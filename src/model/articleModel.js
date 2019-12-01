@@ -24,10 +24,10 @@ const ArticleSchema = new Schema({
     { type: String, ref: 'tag' }
   ],
   createTime:{
-    type: String
+    type: Number
   },
   updateTime: {
-    type: String
+    type: Number
   }
 });
 

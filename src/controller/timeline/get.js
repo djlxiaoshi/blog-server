@@ -1,6 +1,6 @@
 const ArticleModel = require('../../model/articleModel');
 
-module.exports = async (ctx, next) => {
+module.exports = async (ctx) => {
   const params = ctx.query,
     pageSize = parseInt(params.pageSize),
     currentPage = parseInt(params.currentPage),
@@ -8,7 +8,7 @@ module.exports = async (ctx, next) => {
 
   const result = await Promise.all([
     ArticleModel.countDocuments({}),
-    ArticleModel.find({}, '-content -updateTime').skip(skipCount).limit(pageSize).populate('tags').populate('createUser')
+    ArticleModel.find({}, 'title createTime').skip(skipCount).limit(pageSize).populate('tags').populate('createUser', 'username')
   ]);
 
   ctx.body = {
@@ -19,4 +19,5 @@ module.exports = async (ctx, next) => {
       list: result[1]
     }
   };
-};
+
+}

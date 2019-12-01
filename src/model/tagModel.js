@@ -12,7 +12,7 @@ const TagSchema = new Schema({
     required: true
   },
   createTime: {
-    type: String,
+    type: Number,
     required: false
   },
   articles: {

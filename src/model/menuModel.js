@@ -22,7 +22,7 @@ const MenuSchema = new Schema({
     type: Array
   },
   createTime: {
-    type: String
+    type: Number
   }
 });
 

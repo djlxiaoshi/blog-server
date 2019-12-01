@@ -7,7 +7,9 @@ module.exports = async (ctx, next) => {
     skipCount = (currentPage - 1) * pageSize;
 
   const result = await Promise.all([
-    CommentModel.countDocuments({}),
+    CommentModel.countDocuments({
+      articleId: params.articleId
+    }),
     CommentModel.find({
       articleId: params.articleId
     }).skip(skipCount).limit(pageSize).populate('replyUser createUser')
@@ -18,6 +20,7 @@ module.exports = async (ctx, next) => {
     message: 'success',
     data: {
       total: result[0],
+      current: currentPage,
       list: result[1]
     }
   };

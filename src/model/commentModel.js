@@ -19,7 +19,7 @@ const CommentSchema = new Schema({
     ref: 'user'
   },
   createTime:{
-    type: String
+    type: Number
   }
 });
 

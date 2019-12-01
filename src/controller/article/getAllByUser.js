@@ -17,7 +17,7 @@ module.exports = async (ctx, next) => {
 
   const result = await Promise.all([
     ArticleModel.countDocuments({}),
-    ArticleModel.find(matched).skip(skipCount).limit(pageSize).populate('tag')
+    ArticleModel.find(matched).skip(skipCount).limit(pageSize).populate('tags').populate('createUser')
   ]);
 
   ctx.body = {
