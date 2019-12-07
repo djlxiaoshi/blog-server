@@ -8,7 +8,13 @@ module.exports = async (ctx, next) => {
 
   const result = await Promise.all([
     ArticleModel.countDocuments({}),
-    ArticleModel.find({}, '-content -updateTime').skip(skipCount).limit(pageSize).populate('tags').populate('createUser')
+    ArticleModel.find({
+      status: 1 // 发布状态
+    }, '-content -updateTime')
+    .skip(skipCount)
+    .limit(pageSize)
+    .populate('tags')
+    .populate('createUser')
   ]);
 
   ctx.body = {

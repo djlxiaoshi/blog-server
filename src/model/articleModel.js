@@ -23,6 +23,9 @@ const ArticleSchema = new Schema({
   tags: [
     { type: String, ref: 'tag' }
   ],
+  status: { // 文章状态 0：草稿 1：已发布 2：待删除
+    type: Number
+  },
   createTime:{
     type: Number
   },

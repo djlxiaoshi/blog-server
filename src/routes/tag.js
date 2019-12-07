@@ -7,7 +7,7 @@ module.exports = function (router) {
   router.get('/tags', tagController.getAllTags);
 
   // 获取标签详情
-  router.get('/tag/:id', checkLogin, tagController.getTagById);
+  router.get('/tag/:id', tagController.getTagById);
 
   // 新增标签
   router.post('/tag', checkLogin, tagController.createTag);

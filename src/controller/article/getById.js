@@ -8,9 +8,17 @@ module.exports = async (ctx, next) => {
   populate('createUser', 'username').
   populate('tags', '_id label');
 
-  ctx.body = {
-    code: 0,
-    message: 'success',
-    data: data
-  };
+  if (data.status === 0)  {
+    ctx.body = {
+      code: -1003,
+      message: '文章不存在或者未发布',
+      data: {}
+    };
+  } else {
+    ctx.body = {
+      code: 0,
+      message: 'success',
+      data: data
+    };
+  }
 };

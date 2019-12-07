@@ -5,11 +5,7 @@ module.exports = async (ctx, next) => {
     user = ctx.session.user;
 
   const data = await ArticleModel.create({
-    title: bodyParams.title,
-    content: bodyParams.content,
-    abstract: bodyParams.abstract,
-    thumbnail: bodyParams.thumbnail,
-    tag: bodyParams.tag,
+    ...bodyParams,
     createUser: user._id,
     createTime: Date.now()
   });

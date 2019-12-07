@@ -13,7 +13,7 @@ module.exports = {
 
   checkIsAdmin: async (ctx, next) => {
     const user = ctx.session.user;
-    if (user.role !== 'admin') {
+    if (user.role !== 0) {
       return ctx.body = {
         code: -1001,
         message: '用户权限不足'
@@ -25,7 +25,7 @@ module.exports = {
   checkNotLogin: async (ctx, next) => {
     if (ctx.session.user) {
       return ctx.body = {
-        code: -1001,
+        code: -1002,
         message: '用户已登录，请登出后再执行操作'
       };
     }

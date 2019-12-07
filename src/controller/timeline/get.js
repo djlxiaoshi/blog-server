@@ -8,7 +8,13 @@ module.exports = async (ctx) => {
 
   const result = await Promise.all([
     ArticleModel.countDocuments({}),
-    ArticleModel.find({}, 'title createTime').skip(skipCount).limit(pageSize).populate('tags').populate('createUser', 'username')
+    ArticleModel.find({
+      status: 1
+    }, 'title createTime')
+    .skip(skipCount)
+    .limit(pageSize)
+    .populate('tags')
+    .populate('createUser', 'username')
   ]);
 
   ctx.body = {

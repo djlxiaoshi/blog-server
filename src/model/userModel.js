@@ -13,7 +13,7 @@ const UserSchema = new Schema({
     required: true
   },
   role: {
-    type: String
+    type: Number
   },
   avatarKey: {
     type: String,
