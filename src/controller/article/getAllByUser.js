@@ -1,4 +1,4 @@
-const ArticleModel = require('../../model/articleModel');
+const ArticleModel = require('../../model/articleModel')
 
 module.exports = async (ctx, next) => {
   const params = ctx.query,
@@ -7,18 +7,22 @@ module.exports = async (ctx, next) => {
     currentPage = parseInt(params.currentPage),
     skipCount = (currentPage - 1) * pageSize,
     matched = {
-      createUser: user._id,
-    };
+      createUser: user._id
+    }
 
   // 根据taglist
   if (params.tagId) {
-    matched.tag = params.tagId;
+    matched.tag = params.tagId
   }
 
   const result = await Promise.all([
-    ArticleModel.countDocuments({}),
-    ArticleModel.find(matched).skip(skipCount).limit(pageSize).populate('tags').populate('createUser')
-  ]);
+    ArticleModel.countDocuments(matched),
+    ArticleModel.find(matched)
+      .skip(skipCount)
+      .limit(pageSize)
+      .populate('tags')
+      .populate('createUser')
+  ])
 
   ctx.body = {
     code: 0,
@@ -27,5 +31,5 @@ module.exports = async (ctx, next) => {
       total: result[0],
       list: result[1]
     }
-  };
-};
+  }
+}
