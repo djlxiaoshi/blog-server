@@ -4,7 +4,10 @@
  * */
 
 module.exports = {
-  host: '', // 域名
+  host:
+    process.env.NODE_ENV === 'production'
+      ? 'http://djl.pub'
+      : 'http://localhost', // 域名
   port: 3700, // 端口
   mongoUrl: 'mongodb://localhost:27017/blog', // mongodb连接信息
   session: {

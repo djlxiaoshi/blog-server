@@ -4,7 +4,8 @@
   "description": "this is a project of Favorite-App",
   "main": "src/app.js",
   "scripts": {
-    "dev": "nodemon ./src/app.js"
+    "dev": "cross-env NODE_ENV=development nodemon ./src/app.js",
+    "start": "cross-env NODE_ENV=production ./src/app.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,11 @@
   },
   "homepage": "https://github.com/djlxiaoshi/website-back-end#readme",
   "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
     "dayjs": "^1.8.16",
+    "h2m": "^0.7.0",
+    "htmlparser2": "^4.0.0",
     "koa": "^2.5.3",
     "koa-body": "^4.0.4",
     "koa-bodyparser": "^4.2.1",
@@ -29,6 +34,7 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
+    "cross-env": "^6.0.3",
     "koa-static": "^5.0.0",
     "nodemon": "^1.18.4",
     "supervisor": "^0.12.0"

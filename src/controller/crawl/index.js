@@ -1,0 +1,1 @@
+exports.createArticle = require('./create')
