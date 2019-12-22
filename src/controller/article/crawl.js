@@ -1,7 +1,13 @@
 const ArticleModel = require('../../model/articleModel')
 const axios = require('axios')
 const cheerio = require('cheerio')
-const h2m = require('h2m')
+const TurndownService = require('turndown')
+
+const turndownService = new TurndownService({
+  headingStyle: 'atx',
+  codeBlockStyle: 'fenced'
+})
+
 // 爬取文章
 module.exports = async (ctx, next) => {
   const queryParams = ctx.query,
@@ -60,7 +66,9 @@ function getTitle($, type) {
     }
     case '3': {
       // 简书
-      return $('h1').text()
+      return $('h1')
+        .eq(0)
+        .text()
     }
   }
 }
@@ -84,61 +92,10 @@ function getContentHtml($, type) {
 }
 
 function addReprintMarker(title, url, markdownContent) {
-  const reprintMarker = `\n#### 转载自[${title}](${url})\n\r`
+  const reprintMarker = `\n> ##### 转载自[${title}](${url})\n\r`
   return reprintMarker + markdownContent
 }
 
 function getMarkdownContent(html) {
-  return h2m(html, {
-    converter: 'MarkdownExtra',
-    overides: {
-      h1: function(node) {
-        if (node.md) {
-          return `\n# ${node.md}\n`
-        }
-      },
-      h2: function(node) {
-        if (node.md) {
-          return `\n## ${node.md}\n`
-        }
-      },
-      h3: function(node) {
-        if (node.md) {
-          return `\n### ${node.md}\n`
-        }
-      },
-      h4: function(node) {
-        if (node.md) {
-          return `\n#### ${node.md}\n`
-        }
-      },
-      h5: function(node) {
-        if (node.md) {
-          return `\n##### ${node.md}\n`
-        }
-      },
-      h6: function(node) {
-        if (node.md) {
-          return `\n###### ${node.md}\n`
-        }
-      },
-      a: function(node) {
-        var text = node.md || node.attrs.href
-        var href = node.attrs.href || text
-        if (text) {
-          return `[${text}](${href})`
-        }
-      },
-      img: function(node) {
-        var src = node.attrs.src
-        if (src) {
-          return `![${(
-            node.attrs.title ||
-            node.attrs.alt ||
-            ''
-          ).trim()}](${src})`
-        }
-      }
-    }
-  })
+  return turndownService.turndown(html)
 }

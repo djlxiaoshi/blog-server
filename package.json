@@ -21,7 +21,6 @@
     "axios": "^0.19.0",
     "cheerio": "^1.0.0-rc.3",
     "dayjs": "^1.8.16",
-    "h2m": "^0.7.0",
     "htmlparser2": "^4.0.0",
     "koa": "^2.5.3",
     "koa-body": "^4.0.4",
@@ -31,6 +30,7 @@
     "mongoose": "^5.3.2",
     "nodemailer": "^6.4.0",
     "qiniu": "^7.2.1",
+    "turndown": "^5.0.3",
     "uuid": "^3.3.3"
   },
   "devDependencies": {
