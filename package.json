@@ -1,7 +1,7 @@
 {
-  "name": "app-back-end",
+  "name": "blog-server",
   "version": "1.0.0",
-  "description": "this is a project of Favorite-App",
+  "description": "this is a back end project of blog",
   "main": "src/app.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon ./src/app.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/djlxiaoshi/website-back-end.git"
+    "url": "git+https://github.com/djlxiaoshi/app-server.git"
   },
   "author": "djlxs",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/djlxiaoshi/website-back-end/issues"
+    "url": "https://github.com/djlxiaoshi/app-server.git/issues"
   },
-  "homepage": "https://github.com/djlxiaoshi/website-back-end#readme",
+  "homepage": "https://github.com/djlxiaoshi/app-server.git#readme",
   "dependencies": {
     "axios": "^0.19.0",
     "cheerio": "^1.0.0-rc.3",
