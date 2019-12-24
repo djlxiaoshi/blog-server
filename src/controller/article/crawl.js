@@ -58,7 +58,7 @@ function getTitle($, type) {
   switch (type) {
     case '1': {
       // 掘金
-      return $('.article-title').text()
+      return $('article h1').eq(0).text() || '';
     }
     case '2': {
       // Github
