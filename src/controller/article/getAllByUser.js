@@ -17,7 +17,7 @@ module.exports = async (ctx, next) => {
 
   const result = await Promise.all([
     ArticleModel.countDocuments(matched),
-    ArticleModel.find(matched)
+    ArticleModel.find(matched, '-content ')
       .skip(skipCount)
       .limit(pageSize)
       .populate('tags')

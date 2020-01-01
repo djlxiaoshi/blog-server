@@ -1,6 +1,6 @@
 const controller = require('../controller/article/index')
 const { checkLogin } = require('../middleware/check')
-module.exports = function(router) {
+module.exports = function (router) {
   // 全部文章列表  无需登录
   router.get('/articles', controller.getArticles)
 
@@ -14,7 +14,10 @@ module.exports = function(router) {
   router.get('/crawl', checkLogin, controller.crawlArticle)
 
   // 查看
-  router.get('/article/:id', controller.getArticle)
+  router.get('/article/:id', controller.getOne)
+
+  // 根据用户查询某一篇文章
+  router.get('/articleByUser/:id', checkLogin, controller.getOneByUser)
 
   // 更新
   router.put('/article/:id', checkLogin, controller.updateArticle)
