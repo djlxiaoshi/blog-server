@@ -5,6 +5,7 @@
 
 const qiniu = require('qiniu');
 const uuid = require('uuid/v4');
+const dayjs = require('dayjs');
 const appConfig = require('../config/config'),
   qiniuConfig = appConfig.qiniu;
 
@@ -12,7 +13,7 @@ const appConfig = require('../config/config'),
 const mac = new qiniu.auth.digest.Mac(qiniuConfig.accessKey, qiniuConfig.secretKey);
 
 // 文件上传
-exports.upload = function upload(config) {
+exports.upload = function (config) {
   const file = config.file,
     postfixArr = file.name.split('.'),
     postfix = postfixArr[postfixArr.length - 1],
@@ -88,5 +89,28 @@ function refresh(url) {
     }
   });
 
+}
+
+
+
+exports.uploadFromUrl = function (resUrl, filename) {
+
+  //要上传的空间
+  const bucket = appConfig.qiniu.bucket;
+  const mac = new qiniu.auth.digest.Mac(appConfig.qiniu.accessKey, appConfig.qiniu.secretKey);
+  const qiniuConfig = new qiniu.conf.Config();
+  const bucketManager = new qiniu.rs.BucketManager(mac, qiniuConfig);
+
+  filename = filename ? `blog/${dayjs().format('YYYY-MM-DD')}/${filename}` : `blog/${dayjs().format('YYYY-MM-DD')}/${uuid()}`
+  return new Promise(function(resolve, reject) {
+    bucketManager.fetch(resUrl, bucket, filename, function(err, respBody, respInfo) {
+      if (err) {  
+        reject(err);
+      } else {
+        resolve({ respBody, respInfo })
+      }
+    });
+  });
+  
 }
 

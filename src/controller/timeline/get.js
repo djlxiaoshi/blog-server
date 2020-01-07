@@ -16,6 +16,7 @@ module.exports = async ctx => {
       },
       'title createTime'
     )
+      .sort({_id: -1})
       .skip(skipCount)
       .limit(pageSize)
       .populate('tags')

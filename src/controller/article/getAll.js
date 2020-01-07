@@ -16,6 +16,7 @@ module.exports = async (ctx, next) => {
       },
       '-content -updateTime'
     )
+      .sort({_id: -1})
       .skip(skipCount)
       .limit(pageSize)
       .populate('tags')
