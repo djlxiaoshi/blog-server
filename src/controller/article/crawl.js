@@ -49,25 +49,37 @@ module.exports = async (ctx, next) => {
     mrkdownContent
   )
 
-  try {
-    const data = await ArticleModel.create({
-      title: title,
-      content: mrkdownContent,
-      status: 0, // 保存为草稿
-      createUser: user._id,
-      createTime: Date.now()
-    })
-
+  const status = await isExist(queryParams.articleUrl);
+  if (status) {
     ctx.body = {
-      code: 0,
-      message: '文章爬取成功',
-      data: data
+      code: -1004,
+      message: '文章已存在',
+      data: {}
     }
-  } catch (error) {
-    ctx.body = {
-      code: -1005,
-      message: '文章解析失败',
-      error: error
+  } else {
+    // 添加文章
+    try {
+      const data = await ArticleModel.create({
+        title: title,
+        isReprinted: true,
+        origin: queryParams.articleUrl,
+        content: mrkdownContent,
+        status: 0, // 保存为草稿
+        createUser: user._id,
+        createTime: Date.now()
+      })
+  
+      ctx.body = {
+        code: 0,
+        message: '文章爬取成功',
+        data: data
+      }
+    } catch (error) {
+      ctx.body = {
+        code: -1005,
+        message: '文章解析失败',
+        error: error
+      }
     }
   }
 }
@@ -141,4 +153,12 @@ async function generateUrlMap($, $content) {
 
   await Promise.all(promiseList);
   return srcMap;
+}
+
+
+async function isExist(originUrl) {
+  const article = await ArticleModel.findOne({
+    origin: originUrl
+  });
+  return article
 }

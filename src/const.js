@@ -1,0 +1,3 @@
+exports.STATUS_CODE = {
+  AREADY_EXIST: -1004
+};

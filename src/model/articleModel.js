@@ -31,6 +31,12 @@ const ArticleSchema = new Schema({
   },
   updateTime: {
     type: Number
+  },
+  isReprinted: {
+    type: Boolean
+  },
+  origin: {
+    type: String
   }
 });
 
