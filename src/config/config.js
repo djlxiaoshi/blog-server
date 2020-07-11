@@ -15,7 +15,7 @@ module.exports = {
     maxAge: 86400000, // expires time 1 day
     autoCommit: true /** (boolean) automatically commit headers (default true) */,
     overwrite: true /** (boolean) can overwrite or not (default true) */,
-    httpOnly: true /** (boolean) httpOnly or not (default true) */,
+    httpOnly: false /** (boolean) httpOnly or not (default true) */, //由于前端为服务端渲染，所以在服务端渲染时，js要能够获取到cookie
     signed: true /** (boolean) signed or not (default true) */,
     rolling: false /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */,
     renew: false /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
