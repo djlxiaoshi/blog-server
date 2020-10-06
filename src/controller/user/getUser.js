@@ -6,7 +6,7 @@ const UserModel = require('../../model/userModel');
  * @returns {Promise<*>}
  */
 async function getUserById (id) {
-  return await UserModel.findOne({'_id': id}, 'username email avatarKey info');
+  return await UserModel.findOne({'_id': id}, 'username email avatarKey info role');
 }
 
 exports.getUser = async (ctx, next) => {

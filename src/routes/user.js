@@ -4,7 +4,7 @@ const { checkLogin, checkNotLogin } = require('../middleware/check');
 module.exports = function (router) {
 
   // 用户登录
-  router.post('/login', checkNotLogin, userController.userLogin);
+  router.post('/login', userController.userLogin);
   // 用户登出
   router.get('/logout', checkLogin, userController.userLogout);
 
