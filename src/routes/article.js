@@ -7,6 +7,9 @@ module.exports = function (router) {
   // 用户文章列表
   router.get('/user/articles', checkLogin, controller.getArticlesByUser)
 
+  // 根据标签获取文章列表
+  router.get('/getArticlesByTagId', controller.getArticlesByTagId)
+
   // 添加
   router.post('/article', checkLogin, controller.createArticle)
 

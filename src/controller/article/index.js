@@ -1,5 +1,6 @@
 exports.getArticles = require('./getAll')
 exports.getArticlesByUser = require('./getAllByUser')
+exports.getArticlesByTagId = require('./getArticlesByTagId')
 exports.createArticle = require('./create')
 exports.crawlArticle = require('./crawl')
 exports.getOne = require('./getOne').getById;
