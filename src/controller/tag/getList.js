@@ -11,7 +11,7 @@ exports.getAll = async (ctx, next) => {
   if (pageSize && currentPage) {
     const result = await Promise.all([
       TagModel.countDocuments({}),
-      TagModel.find({}).skip(skipCount).limit(pageSize)
+      TagModel.find({}).skip(skipCount).limit(pageSize).populate('createUser')
     ]);
 
     ctx.body = {

@@ -29,7 +29,8 @@ exports.getOneByUser = async function (ctx, next) {
 
 exports.getById = async function (ctx, next) {
   const pathParams = ctx.params // 获取路径参数
-  const data = await ArticleModel.findById(pathParams.id)
+  try {
+    const data = await ArticleModel.findById(pathParams.id)
     .populate('createUser', 'username')
     .populate('tags', '_id label')
 
@@ -46,4 +47,12 @@ exports.getById = async function (ctx, next) {
       data: {}
     }
   }
+  } catch (error) {
+    ctx.body = {
+      code: -1003,
+      message: '文章不存在',
+      data: {}
+    }
+  }
+  
 }
