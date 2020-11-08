@@ -17,6 +17,9 @@ const ArticleSchema = new Schema({
   thumbnail: {
     type: String
   },
+  thumbnailKey: {
+    type: String
+  },
   abstract: {
     type: String
   },

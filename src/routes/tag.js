@@ -6,6 +6,9 @@ module.exports = function (router) {
   // 获取所有标签列表
   router.get('/tags', tagController.getAllTags);
 
+  // 根据用户获取所有标签列表
+  router.get('/getAllTagsByUser', checkLogin, tagController.getAllTagsByUser);
+
   // 获取标签详情
   router.get('/tag/:id', tagController.getTagById);
 

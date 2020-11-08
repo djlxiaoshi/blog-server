@@ -1,11 +1,11 @@
 const ArticleModel = require('../../model/articleModel')
 
 exports.getOneByUser = async function (ctx, next) {
-  const pathParams = ctx.params // 获取路径参数
+  const queryParams = ctx.query // 获取路径参数
   const user = ctx.session.user
 
   const data = await ArticleModel.findOne({
-    _id: pathParams.id,
+    _id: queryParams.id,
     createUser: user._id
   })
     .populate('createUser', 'username')
@@ -19,7 +19,7 @@ exports.getOneByUser = async function (ctx, next) {
     }
   } else {
     ctx.body = {
-      code: -1003,
+      code: -1004,
       message: '文章不存在',
       data: {}
     }
@@ -30,7 +30,10 @@ exports.getOneByUser = async function (ctx, next) {
 exports.getById = async function (ctx, next) {
   const pathParams = ctx.params // 获取路径参数
   try {
-    const data = await ArticleModel.findById(pathParams.id)
+    const data = await ArticleModel.findOne({
+      _id: pathParams.id,
+      status: 1
+    })
     .populate('createUser', 'username')
     .populate('tags', '_id label')
 

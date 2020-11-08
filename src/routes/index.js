@@ -8,6 +8,7 @@ const tagRouter = require('./tag');
 const menuRouter = require('./menu');
 const commentRouter = require('./comment');
 const timelineRouter = require('./timeline');
+const systemRouter = require('./system');
 
 const router = new Router({
   prefix: '/api'
@@ -46,6 +47,8 @@ menuRouter(router);
 commentRouter(router);
 // 时光轴
 timelineRouter(router);
+// 系统相关
+systemRouter(router);
 
 module.exports = router;
 

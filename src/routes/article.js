@@ -16,6 +16,9 @@ module.exports = function (router) {
   // 爬取
   router.get('/crawl', checkLogin, controller.crawlArticle)
 
+  // 查看一篇文章 （需要登录）
+  router.get('/article/getOneByUser', checkLogin, controller.getOneByUser)
+
   // 查看
   router.get('/article/:id', controller.getOne)
 
@@ -27,4 +30,7 @@ module.exports = function (router) {
 
   // 删除
   router.delete('/article/:id', checkLogin, controller.deleteArticle)
+
+  // 处理缩略图
+  router.post('/article/thumbnail', checkLogin, controller.uploadThumbnail);
 }

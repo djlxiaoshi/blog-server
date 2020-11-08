@@ -15,7 +15,15 @@ const UserSchema = new Schema({
   role: {
     type: Number
   },
+  disabled: {
+    type: Boolean,
+    default: false
+  },
   avatarKey: {
+    type: String,
+    required: false
+  },
+  avatar: {
     type: String,
     required: false
   },
@@ -25,8 +33,24 @@ const UserSchema = new Schema({
   },
   email: {
     type: String,
-    required: true
-  }
+    required: false
+  },
+  wechat: {
+    type: String,
+    required: false
+  },
+  github: {
+    type: String,
+    required: false
+  },
+  juejin: {
+    type: String,
+    required: false
+  },
+  jianshu: {
+    type: String,
+    required: false
+  },
 });
 
 /**

@@ -7,3 +7,4 @@ exports.getOne = require('./getOne').getById;
 exports.getOneByUser = require('./getOne').getOneByUser;
 exports.updateArticle = require('./update')
 exports.deleteArticle = require('./delete')
+exports.uploadThumbnail = require('./uploadThumbnail')

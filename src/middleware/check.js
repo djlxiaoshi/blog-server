@@ -13,6 +13,12 @@ module.exports = {
 
   checkIsAdmin: async (ctx, next) => {
     const user = ctx.session.user;
+    if(!user) {
+      return ctx.body = {
+        code: -1000,
+        message: '用户未登录'
+      }
+    }
     if (user.role !== 0) {
       return ctx.body = {
         code: -1001,

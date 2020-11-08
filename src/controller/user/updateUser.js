@@ -6,7 +6,12 @@ exports.updateUser = async (ctx, next) => {
     sessionUser = ctx.session.user,
     userMsg = {
       username: params.username,
-      info: params.info
+      info: params.info,
+      email: params.email,
+      github: params.github,
+      wechat: params.wechat,
+      jianshu: params.jianshu,
+      juejin: params.juejin,
     };
 
   // 判断用户名是否已经存在
@@ -22,19 +27,38 @@ exports.updateUser = async (ctx, next) => {
 
   }
 
-  await UserModel.findByIdAndUpdate(sessionUser._id, userMsg); // 返回的是根据条件查找到的文档
-
-  const updateUser = await UserModel.findById(sessionUser._id, 'username info avatar');
+  const updatedUser = await UserModel.findByIdAndUpdate(sessionUser._id, userMsg, {new: true, projection: '-password'}); // 返回的是根据条件查找到的文档
 
   // 更新session
   ctx.session.user = {
     ...ctx.session.user,
-    updateUser
+    updatedUser
   };
 
   ctx.body = {
     code: 0,
-    data: updateUser,
+    data: updatedUser,
     message: 'Success'
   };
 };
+
+exports.updateUserByAdmin = async (ctx, next) => {
+  const bodyParams = ctx.request.body,
+    pathParams = ctx.params;
+
+  try {
+    const user = await UserModel.findByIdAndUpdate(pathParams.id, bodyParams, {new: true, projection: '-password'});
+    ctx.body = {
+      code: 0,
+      message: 'Success',
+      data: user
+    }
+  } catch (error) {
+    ctx.body = {
+      code: 0,
+      message: 'Sercer Error',
+      data: user
+    }
+  }
+
+}

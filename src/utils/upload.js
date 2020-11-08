@@ -43,13 +43,16 @@ exports.upload = function (config) {
     formUploader.putFile(
       uploadToken, fileKey, filePath, putExtra,
       function (respErr, respBody, respInfo) {
+        console.log('respBody', respBody)
         if (respErr) {
           reject(respErr);
         }
         if (respInfo.statusCode === 200) {
           try {
-            // 刷新dns缓存
-            refresh(`${qiniuConfig.previewHost}/${fileKey}`);
+            if (config.coverKey) {
+              // 如果是覆盖图片   强制刷新dns缓存
+              refresh(`${qiniuConfig.previewHost}/${fileKey}`);
+            }
             resolve(respBody);
           } catch (e) {
             reject(e);
