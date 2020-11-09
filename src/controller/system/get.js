@@ -7,7 +7,7 @@ exports.getAdminSystemConfig = async function (ctx, next) {
     const data = await SystemModel.findOne({})
     ctx.body = {
         code: 0,
-        data: data,
+        data: data || {},
         message: 'Success'
     } 
   } catch (error) {
